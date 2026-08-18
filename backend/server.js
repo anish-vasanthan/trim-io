@@ -15,23 +15,8 @@ const urlMap = {};
 const reverseMap = {};
 
 // ── Middleware ─────────────────────────────────────────────────
-const allowedOrigins = [
-  'http://localhost:5173',
-  process.env.FRONTEND_URL,
-].filter(Boolean);
-
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (curl, Postman) or from allowed origins
-    if (!origin || allowedOrigins.includes(origin) || process.env.FRONTEND_URL === '*') {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'DELETE'],
-  allowedHeaders: ['Content-Type']
-}));
+// Allow all origins — works for both local dev and any Vercel deployment
+app.use(cors());
 app.use(express.json());
 
 // ── POST /api/shorten ──────────────────────────────────────────
