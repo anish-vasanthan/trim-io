@@ -6,7 +6,7 @@ const validUrl = require('valid-url');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const BASE_URL = process.env.BASE_URL || 'http://localhost:5000';
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 
 // ── In-memory storage ──────────────────────────────────────────
 // urlMap: shortcode → { originalUrl, clicks, createdAt, expiresAt }
@@ -16,7 +16,7 @@ const reverseMap = {};
 
 // ── Middleware ─────────────────────────────────────────────────
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
