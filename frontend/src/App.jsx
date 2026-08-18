@@ -4,7 +4,7 @@ import ShortenForm from './components/ShortenForm';
 import ResultCard from './components/ResultCard';
 import StatsTable from './components/StatsTable';
 import Toast from './components/Toast';
-import axios from 'axios';
+import axios from './api';
 
 // Floating background particles
 function Particles() {
